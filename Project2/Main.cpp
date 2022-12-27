@@ -3,15 +3,15 @@ using namespace std;
 #include "CircularQueue.h"
 
 int main() {
-    // Create a circular queue with capacity 10
+    // Creating a circular queue with capacity 10
     CircularQueue<Obstacles> obstacle_queue(10);
 
-    // Push some obstacles onto the queue
+    // Pushing some obstacles onto the queue
     obstacle_queue.push(Obstacles (3.0, 20.0));
     obstacle_queue.push(Obstacles(2.0, 1.0));
     obstacle_queue.push(Obstacles(30.0, 50.0));
 
-    // Create some participants
+    // Creating some participants
     Man man("John");
     Cat cat("Fluffy");
     Robot robot("Robo");
@@ -21,7 +21,7 @@ int main() {
 
     // Loop until only one participant is left
     while (participants.size() > 1) {
-        // Take turns overcoming obstacles
+        // Taking turns overcoming obstacles
         for (auto& participant : participants) {
             Obstacles obstacle = obstacle_queue.front();
             if (obstacle.getHeight() == 0.0) {
@@ -30,7 +30,7 @@ int main() {
                 participant->jump();
             }
             if (!participant->overcomeObstacle(obstacle)) {
-                // Remove participant from the race if they can't overcome the obstacle
+                // Removing participant from the race if they can't overcome the obstacle
                 participants.erase(std::remove(participants.begin(), participants.end(), participant), participants.end());
             }
             obstacle_queue.pop();
